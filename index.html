@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerard P. Ramos | Portfolio</title>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js"></script>
+    <style>
+        :root {
+            --bg-dark: #f5f1eb;
+            --bg-card: #ffffff;
+            --accent-primary: #c79a4d;
+            --accent-hover: #b6863d;
+            --text-main: #1f1a17;
+            --text-muted: #6d625d;
+            --border: #e8dfd4;
+            --soft-panel: #f8f4ef;
+            --header-bg: rgba(255, 255, 255, 0.82);
+            --header-border: #e8dfd4;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-dark: #111111;
+                --bg-card: #1a1a1a;
+                --accent-primary: #d4af6e;
+                --accent-hover: #c99a4d;
+                --text-main: #f5f1ea;
+                --text-muted: #bcae9e;
+                --border: #3a312c;
+                --soft-panel: #171310;
+                --header-bg: rgba(17, 17, 17, 0.9);
+                --header-border: #2b2725;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--header-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--header-border);
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+            gap: 1rem;
+        }
+
+        .brand-stack {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--accent-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        /* Sections General */
+        section {
+            padding: 6rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background-color: var(--accent-primary);
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 90vh;
+            gap: 4rem;
+            padding-top: 8rem;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-tag {
+            color: var(--accent-primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-desc {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-hover));
+            color: #fffaf3;
+            box-shadow: 0 10px 20px rgba(199, 154, 77, 0.18);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--accent-hover), var(--accent-primary));
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        .hero-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            transform: translateY(2rem);
+        }
+
+        .avatar-placeholder {
+            width: 360px;
+            height: 360px;
+            border-radius: 20px;
+            border: 2px solid rgba(199, 154, 77, 0.8);
+            background: linear-gradient(135deg, var(--soft-panel), var(--bg-card));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 40px rgba(80, 66, 56, 0.12);
+            overflow: hidden;
+        }
+
+        .avatar-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 18%;
+            display: block;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--border);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            right: -8px;
+            background-color: var(--bg-dark);
+            border: 4px solid var(--accent-primary);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left { left: 0; }
+        .right { left: 50%; }
+
+        .right::after { left: -8px; }
+
+        .timeline-content {
+            padding: 1.5rem;
+            background-color: var(--bg-card);
+            position: relative;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .timeline-date {
+            color: var(--accent-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-role {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .timeline-org {
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .timeline-body {
+            font-size: 0.95rem;
+        }
+
+        .timeline-body ul {
+            list-style-type: none;
+        }
+
+        .timeline-body li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .timeline-body li::before {
+            content: "•";
+            color: var(--accent-primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Skills Grid */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-primary);
+        }
+
+        .skill-header h3 {
+            color: var(--text-main);
+        }
+
+        .skill-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .chip {
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--accent-primary);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: rgba(212, 175, 110, 0.5);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-thumbnail {
+            height: 200px;
+            background: linear-gradient(45deg, #1e293b, #334155);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Contact Section */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            background: linear-gradient(135deg, rgba(26,26,26,1), rgba(18,18,18,1));
+            border: 1px solid var(--border);
+            padding: 3rem;
+            border-radius: 12px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            color: var(--accent-primary);
+            background-color: rgba(56, 189, 248, 0.1);
+            padding: 0.8rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-text h4 {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .contact-text p {
+            margin: 0;
+            color: var(--text-main);
+            font-size: 1.05rem;
+        }
+
+        .facebook-link {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background-color: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 110, 0.12);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 6rem;
+                gap: 2rem;
+            }
+            .hero-desc {
+                margin: 0 auto 2.5rem;
+            }
+            .cta-buttons {
+                justify-content: center;
+            }
+            .timeline::after {
+                left: 31px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            .timeline-item::after {
+                left: 23px;
+            }
+            .left, .right {
+                left: 0;
+            }
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="brand-stack">
+                <a href="#" class="logo">GERARD<span>.RAMOS</span></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="about" class="hero">
+        <div class="hero-content">
+            <div class="hero-tag">Events Videographer & Editor</div>
+            <h1 class="hero-title">Making Cinematic Stories Ground & Air</h1>
+            <p class="hero-desc">
+                Skilled editor, drone pilot, and BSIT graduate with over 4 years of high-pressure experience executing end-to-end multimedia productions for weddings, corporate brands, and milestones.
+            </p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Work With Me <i data-lucide="arrow-right"></i></a>
+                <a href="#projects" class="btn btn-secondary">View Showcase</a>
+            </div>
+        </div>
+        <div class="hero-image-container">
+            <div class="avatar-placeholder">
+                <img src="DSC_2043.JPG" alt="Portrait photo" />
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2 class="section-title">Professional Journey</h2>
+        <div class="timeline">
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <div class="timeline-date">2022 – Present</div>
+                    <div class="timeline-role">Freelance Videographer, Photographer & Editor</div>
+                    <div class="timeline-org">Self-Employed / Collaborative Freelance</div>
+                    <div class="timeline-body">
+                        <ul>
+                            <li><strong>Full-Scale Event Production:</strong> Handle end-to-end workflows from initial creative vision to final output delivery.</li>
+                            <li><strong>Same-Day Edits (SDE):</strong> Expertly capture and assemble storytelling wedding highlights produced live on-site before the reception ends.</li>
+                            <li><strong>Corporate Stories:</strong> Deliver premium seminar summaries, dynamic brand features, and crisp interview logs natively combining aerials.</li>
+                            <li><strong>High-Speed Post:</strong> Leverage hardware platforms to process 4K multi-cam assets with rapid turnarounds.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <div class="timeline-date">2021 – 2024</div>
+                    <div class="timeline-role">Bachelor of Science in Information Technology</div>
+                    <div class="timeline-org">Binalatongan Community College</div>
+                    <div class="timeline-body">
+                        <p>Graduated with an IT major focusing heavily on Multimedia Systems, Digital Media Production pipelines, data preservation, and structural hardware troubleshooting.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Technical Expertise & Gear</h2>
+        <div class="skills-container">
+            <div class="skill-card">
+                <div class="skill-header">
+                    <i data-lucide="clapperboard" size="24"></i>
+                    <h3>Production & Capture</h3>
+                </div>
+                <div class="skill-chips">
+                    <span class="chip">Cinematic Videography</span>
+                    <span class="chip">Drone Aerial Capture</span>
+                    <span class="chip">Still Photography</span>
+                    <span class="chip">Multi-Cam Layouts</span>
+                    <span class="chip">Solo Operation Execution</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-header">
+                    <i data-lucide="cpu" size="24"></i>
+                    <h3>Software & Core IT</h3>
+                </div>
+                <div class="skill-chips">
+                    <span class="chip">Adobe Premiere Pro (Expert)</span>
+                    <span class="chip">Adobe Lightroom</span>
+                    <span class="chip">Adobe Photoshop</span>
+                    <span class="chip">Data Management</span>
+                    <span class="chip">Secure Cloud Workflows</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-header">
+                    <i data-lucide="camera" size="24"></i>
+                    <h3>Production Hardware</h3>
+                </div>
+                <div class="skill-chips">
+                    <span class="chip">4K Mirrorless Systems</span>
+                    <span class="chip">DJI Drone Platforms</span>
+                    <span class="chip">Ronin Stabilizers</span>
+                    <span class="chip">Wireless Audio Systems</span>
+                    <span class="chip">Apple M4 Silicon Workspace</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Sample Projects Showcase</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 700px;">
+            A collection of cinematic contributions and event features produced for Mark Fontanilla Photography and Films. Click any project to open the master video records.
+        </p>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-thumbnail">
+                    <i data-lucide="film" size="48"></i>
+                </div>
+                <div class="project-content">
+                    <div>
+                        <h3 class="project-title">Cinematic Prenup. Shoot</h3>
+                        <p class="project-desc">Filming or photographing in any setting with deliberate effort.</p>
+                    </div>
+                    <a href="https://www.tiktok.com/@ramrard/video/7644595264208014610?is_from_webapp=1&sender_device=pc" target="_blank" class="btn btn-secondary" style="text-align:center; display:block;">View Project Video</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-thumbnail">
+                    <i data-lucide="heart" size="48"></i>
+                </div>
+                <div class="project-content">
+                    <div>
+                        <h3 class="project-title">Cinematic Wedding Same Day Edit</h3>
+                        <p class="project-desc">Emotional wedding storytelling feature blending clean candid multi-cam ground shots.</p>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1AGxnO9Bc8cCGKeiGdDlCxwrpVrJNKi7f/view?usp=sharing" target="_blank" class="btn btn-secondary" style="text-align:center; display:block;">View Project Video</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-thumbnail">
+                    <i data-lucide="building" size="48"></i>
+                </div>
+                <div class="project-content">
+                    <div>
+                        <h3 class="project-title">Corporate SDE</h3>
+                        <p class="project-desc">Polished event summary reel focusing heavily on fast rhythmic editing cuts, explicit audio synchronization, and visual pacing.</p>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1vfjeVk5Yc-351jsi5_pdbcE2UCqws59A?usp=share_link" target="_blank" class="btn btn-secondary" style="text-align:center; display:block;">View Project Video</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Contact Info.</h2>
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h3>Let's collaborate on your next production</h3>
+                <p>Available for freelance bookings, corporate campaigns, weddings, and commercial projects across Pangasinan and surrounding regions.</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon"><i data-lucide="phone"></i></div>
+                        <div class="contact-text">
+                            <h4>Phone</h4>
+                            <p>09276477913</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i data-lucide="mail"></i></div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p>gerardposadasramos@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i data-lucide="map-pin"></i></div>
+                        <div class="contact-text">
+                            <h4>Location</h4>
+                            <p>Brgy. Palaming, San Carlos City, Pangasinan</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i data-lucide="link"></i></div>
+                        <div class="contact-text">
+                            <h4>Facebook</h4>
+                            <p><a class="facebook-link" href="https://www.facebook.com/Ramraddd" target="_blank" rel="noopener noreferrer">Gerard Ramos</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Gerard P. Ramos. All rights reserved.</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
